@@ -14,13 +14,13 @@ import java.nio.channels.FileChannel;
 
 
 /**
- * 本地测试环境：jdk1.8，tomcat8，i5cpu，8g内存，就一普通的3000左右办公电脑
+ * 本地测试环境：jdk1.8，tomcat8，i5cpu，8g内存，就一普通的3K左右办公电脑
  * bbb方法是用io流来操作的，传入182M文件后，测试结果如下：
- * 从开始读到写入完成耗时38351
- * 组装数据写入文件共耗时251
- * ccc方法是用nio中的文件内存映射MapedByteBuffer来操作的，182M文件测试结果如下：
  * 从开始读到写入完成耗时119263
  * 组装数据写入文件共耗时1451
+ * ccc方法是用nio中的文件内存映射MapedByteBuffer来操作的，182M文件测试结果如下：
+ * 从开始读到写入完成耗时38351
+ * 组装数据写入文件共耗时251
  */
 @RestController
 public class TestController {
@@ -111,7 +111,7 @@ public class TestController {
                 }
             }
             System.out.println("往文件里写内容完成");
-            filesStream = new InputStream[10];//初始化files
+            mbbs = new MappedByteBuffer[10];//初始化mbbs
             System.out.println("从开始读到写入完成耗时"+(System.currentTimeMillis()-start));
             System.out.println("组装数据写入文件共耗时"+(System.currentTimeMillis()-writeStart));
             return "文件保存成功";
