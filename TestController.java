@@ -102,7 +102,7 @@ public class TestController {
 
                 FileChannel out = null;
                 try {
-                    out = new FileOutputStream(tempFile).getChannel();
+                    out = new FileOutputStream(tempFile,true).getChannel();//这里构造方法多了一个参数true,表示在文件末尾追加写入
                     out.write(mbbs[i]);
                 }catch (Exception e){
                     e.printStackTrace();
